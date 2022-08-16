@@ -13,6 +13,9 @@
     <module>gulimall-order</module>
     <module>gulimall-product</module>
     <module>gulimall-ware</module>
+    <module>renren-fast</module>
+    <module>renren-generator</module>
+      <module>gulimall-common</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -20,21 +23,61 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+
     <lombok.version>1.18.22</lombok.version>
     <junit.version>4.12</junit.version>
     <log4j.version>1.2.17</log4j.version>
     <mysql.version>5.1.35</mysql.version>
     <druid.version>1.1.16</druid.version>
-    <mybatis-plus-boot.version>3.5.2</mybatis-plus-boot.version>
-    <spring-boot-starter.version>2.5.6</spring-boot-starter.version>
+<!--    <spring-boot-starter.version>2.6.6</spring-boot-starter.version>-->
+
+    <mybatisplus.version>3.3.1</mybatisplus.version>
+    <mssql.version>4.0</mssql.version>
+    <oracle.version>11.2.0.3</oracle.version>
+    <druid.version>1.1.13</druid.version>
+    <quartz.version>2.3.0</quartz.version>
+    <commons.lang.version>2.6</commons.lang.version>
+    <commons.fileupload.version>1.2.2</commons.fileupload.version>
+    <commons.io.version>2.5</commons.io.version>
+    <commons.codec.version>1.10</commons.codec.version>
+    <commons.configuration.version>1.10</commons.configuration.version>
+    <shiro.version>1.9.0</shiro.version>
+    <jwt.version>0.7.0</jwt.version>
+    <kaptcha.version>0.0.9</kaptcha.version>
+    <qiniu.version>7.2.23</qiniu.version>
+    <aliyun.oss.version>2.8.3</aliyun.oss.version>
+    <qcloud.cos.version>4.4</qcloud.cos.version>
+    <swagger.version>2.7.0</swagger.version>
+    <joda.time.version>2.9.9</joda.time.version>
+    <gson.version>2.8.5</gson.version>
+    <fastjson.version>1.2.79</fastjson.version>
+    <hutool.version>4.1.1</hutool.version>
+    <mongo.version>3.11.0</mongo.version>
+    <velocity.version>1.7</velocity.version>
+    <pagehelper.spring.boot.version>1.2.5</pagehelper.spring.boot.version>
+    <gulimall.version>1.0-SNAPSHOT</gulimall.version>
+
+    <opfeign.version>3.1.0</opfeign.version>
+    <spring-boot-web.version>2.6.6</spring-boot-web.version>
+    <boot-starter.version>2.6.6</boot-starter.version>
+    <servlet.version>3.1.0</servlet.version>
+    <cloud-starter-alibaba.version>2021.1</cloud-starter-alibaba.version>
+    <cloud-alibaba-config.version>2021.1</cloud-alibaba-config.version>
+
   </properties>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>com.wu</groupId>
+        <artifactId>gulimall-common</artifactId>
+        <version>${gulimall.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>2.2.2.RELEASE</version>
+        <version>2.6.6</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -42,7 +85,7 @@
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
-        <version>Hoxton.SR1</version>
+        <version>2021.0.2</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -50,7 +93,7 @@
       <dependency>
         <groupId>com.alibaba.cloud</groupId>
         <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-        <version>2.1.0.RELEASE</version>
+        <version>2021.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -67,11 +110,6 @@
         <version>${druid.version}</version>
       </dependency>
 
-      <dependency>
-        <groupId>lombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
-      </dependency>
 
       <dependency>
         <groupId>org.projectlombok</groupId>
@@ -83,7 +121,7 @@
       <dependency>
         <groupId>com.baomidou</groupId>
         <artifactId>mybatis-plus-boot-starter</artifactId>
-        <version>${mybatis-plus.boot.version}</version>
+        <version>${mybatisplus.version}</version>
       </dependency>
 
       <dependency>
@@ -99,9 +137,200 @@
       </dependency>
 
       <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>mybatis-plus-boot-starter</artifactId>
+      <version>${mybatisplus.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.oracle</groupId>
+        <artifactId>ojdbc6</artifactId>
+        <version>${oracle.version}</version>
+      </dependency>
+      <!--mssql驱动-->
+      <dependency>
+        <groupId>com.microsoft.sqlserver</groupId>
+        <artifactId>sqljdbc4</artifactId>
+        <version>${mssql.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-starter</artifactId>
+        <version>${druid.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz</artifactId>
+        <version>${quartz.version}</version>
+
+      </dependency>
+      <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>${commons.lang.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-fileupload</groupId>
+        <artifactId>commons-fileupload</artifactId>
+        <version>${commons.fileupload.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${commons.io.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>${commons.codec.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-configuration</groupId>
+        <artifactId>commons-configuration</artifactId>
+        <version>${commons.configuration.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-core</artifactId>
+        <version>${shiro.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-spring</artifactId>
+        <version>${shiro.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt</artifactId>
+        <version>${jwt.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.axet</groupId>
+        <artifactId>kaptcha</artifactId>
+        <version>${kaptcha.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.qiniu</groupId>
+        <artifactId>qiniu-java-sdk</artifactId>
+        <version>${qiniu.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.aliyun.oss</groupId>
+        <artifactId>aliyun-sdk-oss</artifactId>
+        <version>${aliyun.oss.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.qcloud</groupId>
+        <artifactId>cos_api</artifactId>
+        <version>${qcloud.cos.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>joda-time</groupId>
+        <artifactId>joda-time</artifactId>
+        <version>${joda.time.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>${gson.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-all</artifactId>
+        <version>${hutool.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongo-java-driver</artifactId>
+        <version>${mongo.version}</version>
+      </dependency>
+
+      <dependency>
+        <artifactId>velocity</artifactId>
+        <groupId>org.apache.velocity</groupId>
+        <version>${velocity.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <version>${pagehelper.spring.boot.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
+        <version>${opfeign.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>${spring-boot-starter.version}</version>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>${boot-starter.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>${spring-boot-web.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${servlet.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        <version>${cloud-starter-alibaba.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        <version>${cloud-alibaba-config.version}</version>
       </dependency>
 
     </dependencies>
